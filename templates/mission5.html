@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission 5</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='mission5.css') }}">
+</head>
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+<body>
+
+<div class="container">
+
+<div class="header">
+
+    <h1 class="title">MISSION 5</h1>
+
+    <h2 class="subtitle">AI SECURITY FIREWALL</h2>
+
+</div>
+
+<div class="game">
+
+    <!-- LEFT PANEL -->
+
+    <div class="panel leftPanel">
+
+        <h2>MISSION BRIEF</h2>
+
+        <p>
+            Excellent work, Agent!
+        </p>
+
+        <p>
+            You have successfully infiltrated the hacker's network.
+            However, the Core Server is protected by an AI Security Firewall.
+        </p>
+
+        <p>
+            Answer every cybersecurity question before the timer reaches zero.
+        </p>
+
+        <div class="warning">
+
+            ⚠ Every wrong answer deducts 4 seconds.
+
+        </div>
+
+        <div class="timerBox">
+
+            <h3>TIME REMAINING</h3>
+
+            <div class="timer">
+
+                <span id="timer">60</span>
+
+            </div>
+
+        </div>
+
+        <div class="firewallBox">
+
+            <h3>Firewall Access</h3>
+
+            <progress
+                id="progress"
+                value="0"
+                max="5">
+            </progress>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="panel rightPanel">
+
+        <h2 id="question"></h2>
+
+        <div id="options"></div>
+
+        <br>
+
+        <button onclick="submitAnswer()">
+
+            SUBMIT
+
+        </button>
+
+        <div id="message"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+    question: "What does VPN stand for?",
+    options: [
+        "Virtual Public Network",
+        "Virtual Private Network",
+        "Verified Private Network",
+        "Virtual Protected Node"
+    ],
+    answer: 1
+},
+
+{
+    question: "Which of the following is considered the strongest password?",
+    options: [
+        "password123",
+        "john2004",
+        "qwerty",
+        "T9#Lm8@Xp2!"
+    ],
+    answer: 3
+},
+
+{
+    question: "Which protocol provides a secure connection to websites?",
+    options: [
+        "HTTP",
+        "HTTPS",
+        "FTP",
+        "Telnet"
+    ],
+    answer: 1
+},
+
+{
+    question: "Which of the following is an example of Two-Factor Authentication (2FA)?",
+    options: [
+        "Using only a password",
+        "Entering a password and a one-time code sent to your phone",
+        "Using only your username",
+        "Saving your password in the browser"
+    ],
+    answer: 1
+},
+
+{
+    question: "What should you do if you receive an email asking for your password?",
+    options: [
+        "Reply with your password",
+        "Click the link immediately",
+        "Report it as phishing and never share your password",
+        "Forward it to friends"
+    ],
+    answer: 2
+}
+
+];
+startMission();
+let currentQuestion = 0;
+let score = 0;
+let time = 60;
+
+const timerDisplay = document.getElementById("timer");
+const progressBar = document.getElementById("progress");
+const message = document.getElementById("message");
+const submitBtn = document.querySelector("button");
+
+function loadQuestion() {
+
+    if (currentQuestion >= questions.length) return;
+
+    let q = questions[currentQuestion];
+
+    document.getElementById("question").innerHTML =
+        `Question ${currentQuestion + 1} of ${questions.length}<br><br>${q.question}`;
+
+    let html = "";
+
+    q.options.forEach((option, index) => {
+
+        html += `
+            <label>
+                <input type="radio" name="option" value="${index}">
+                ${option}
+            </label>
+            <br><br>
+        `;
+
+    });
+
+    document.getElementById("options").innerHTML = html;
+
+    submitBtn.disabled = false;
+}
+
+function submitAnswer() {
+
+    if (time <= 0) return;
+
+    const selected = document.querySelector('input[name="option"]:checked');
+
+    if (!selected) {
+        alert("Please select an answer!");
+        return;
+    }
+
+    submitBtn.disabled = true;
+
+    const answer = parseInt(selected.value);
+
+    if (answer === questions[currentQuestion].answer) {
+
+        score += 20;
+
+        message.innerHTML =
+            "<h3 style='color:lime;'>✅ Correct!</h3>";
+
+    } else {
+
+        time -= 4;
+
+        if (time < 0) time = 0;
+
+        timerDisplay.innerHTML = time;
+
+        message.innerHTML =
+            `<h3 style='color:red;'>
+            ❌ Wrong!<br>
+            Correct Answer:
+            ${questions[currentQuestion].options[questions[currentQuestion].answer]}
+            <br>-4 Seconds
+            </h3>`;
+
+    }
+
+    currentQuestion++;
+
+    progressBar.value = currentQuestion;
+
+    if (currentQuestion < questions.length) {
+
+        setTimeout(() => {
+
+            message.innerHTML = "";
+
+            loadQuestion();
+
+        }, 1000);
+
+    } else {
+
+        clearInterval(countdown);
+
+        setTimeout(() => {
+
+            document.querySelector(".rightPanel").innerHTML = `
+                <h2 style="color:lime;">🔥 Firewall Disabled!</h2>
+
+                <p>You answered <b>${score}</b> out of ${questions.length} correctly.</p>
+
+                <h3>Decrypting Core Server...</h3>
+
+                <p>Loading Mission 6...</p>
+            `;
+clearInterval(countdown);
+
+finishMission(5);
+
+// Store the actual quiz score
+localStorage.setItem("mission5_score", score);
+
+            setTimeout(() => {
+
+                window.location.href = "/mission6";
+
+            }, 3000);
+
+        }, 1000);
+
+    }
+
+}
+
+loadQuestion();
+
+const countdown = setInterval(() => {
+
+    if (time <= 0) {
+
+        clearInterval(countdown);
+failMission(5);
+        document.querySelector(".rightPanel").innerHTML = `
+            <h2 style="color:red;">⏰ Time's Up!</h2>
+
+            <p>The AI Firewall has locked the system.</p>
+
+            <button onclick="location.reload()">
+                TRY AGAIN
+            </button>
+        `;
+
+        return;
+    }
+
+    time--;
+
+    timerDisplay.innerHTML = time;
+
+}, 1000);
+
+
+</script>
+
+
+</body>
+</html>

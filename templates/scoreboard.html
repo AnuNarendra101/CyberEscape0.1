@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CYBERESCAPE - FINAL REPORT</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='scoreboard.css') }}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="scanline"></div>
+
+<div class="container">
+
+    <!-- TITLE -->
+
+    <h1>CYBERESCAPE</h1>
+
+    <h2>TOP SECRET MISSION REPORT</h2>
+
+    <!-- LOADING -->
+
+    <div id="loadingScreen">
+
+        <p id="loadingText">
+
+            INITIALIZING INTELLIGENCE REPORT...
+
+        </p>
+
+        <div class="progressBox">
+
+            <div id="loadingBar"></div>
+
+        </div>
+
+    </div>
+
+    <!-- REPORT -->
+
+    <div id="report" style="display:none;">
+
+        <h2>MISSION REPORT</h2>
+
+        <table>
+
+            <tr><td>MISSION 1</td><td id="m1">100</td></tr>
+            <tr><td>MISSION 2</td><td id="m2">100</td></tr>
+            <tr><td>MISSION 3</td><td id="m3">75</td></tr>
+            <tr><td>MISSION 4</td><td id="m4">100</td></tr>
+            <tr><td>MISSION 5</td><td id="m5">100</td></tr>
+            <tr><td>MISSION 6</td><td id="m6">75</td></tr>
+            <tr><td>MISSION 7</td><td id="m7">100</td></tr>
+            <tr><td>MISSION 8</td><td id="m8">100</td></tr>
+            <tr><td>MISSION 9</td><td id="m9">100</td></tr>
+            <tr><td>MISSION 10</td><td id="m10">100</td></tr>
+
+        </table>
+
+        <div class="total">
+
+            TOTAL SCORE
+
+            <h1 id="totalScore">950 / 1000</h1>
+
+        </div>
+
+        <div class="rank">
+
+            <h2>RANK</h2>
+
+            <h1 id="rankText">
+
+                ELITE CYBER AGENT
+
+            </h1>
+
+        </div>
+
+        <div class="stats">
+
+            <h2>MISSION STATISTICS</h2>
+
+            <p>Hack Success Rate :
+                <span id="hackRate">
+                    95%
+                </span>
+            </p>
+
+            <p>Threat Level :
+                <span>
+                    EXTREME
+                </span>
+            </p>
+
+            <p>Firewall Breached :
+                <span>
+                    100%
+                </span>
+            </p>
+
+            <p>AI CORE STATUS :
+                <span id="coreStatus">
+                    DESTROYED
+                </span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- GLITCH -->
+
+    <div id="glitchEnding" style="display:none;">
+
+        <h1>
+
+            AI STATUS
+
+        </h1>
+
+        <h2>
+
+            REBOOTING...
+
+        </h2>
+
+        <br>
+
+        <h1>
+
+            :)
+
+        </h1>
+
+    </div>
+
+    <!-- THANK YOU -->
+
+    <div id="thankYou" style="display:none;">
+
+        <h1>
+
+            THANK YOU
+
+        </h1>
+
+        <h2>
+
+            FOR PLAYING
+
+        </h2>
+
+        <br>
+
+        <h2>
+
+            CYBERESCAPE
+
+        </h2>
+
+        <br><br>
+
+        <h3>
+
+            Developed By
+
+        </h3>
+
+        <h2>
+
+            ANU NARENDRA N C 
+
+        </h2>
+
+        <br>
+
+        <button onclick="location.reload()">
+
+            PLAY AGAIN
+
+        </button>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='scoreboard.js') }}"></script>
+
+</body>
+
+</html>

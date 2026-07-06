@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Escape</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="login-box">
+
+    <h1>CYBER ESCAPE</h1>
+
+    <p id="typing"></p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Agent ID"
+            required>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <button type="submit">
+            ACCESS SYSTEM
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+const messages = [
+"Connecting to Secure Network...",
+"Authenticating Agent...",
+"Decrypting Files...",
+"Access Granted."
+];
+
+let line = 0;
+let char = 0;
+
+function type(){
+
+    if(line >= messages.length) return;
+
+    document.getElementById("typing").innerHTML =
+    messages[line].substring(0,char);
+
+    char++;
+
+    if(char > messages[line].length){
+        line++;
+        char = 0;
+    }
+
+    setTimeout(type,70);
+}
+
+type();
+
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize=16;
+const columns=canvas.width/fontSize;
+
+const drops=[];
+
+for(let x=0;x<columns;x++){
+    drops[x]=1;
+}
+
+function draw(){
+
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff66";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+
+        const text=letters[Math.floor(Math.random()*letters.length)];
+
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
+        }
+
+        drops[i]++;
+    }
+
+}
+
+setInterval(draw,35);
+
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Escape</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="login-box">
+
+    <h1>CYBER ESCAPE</h1>
+
+    <p id="typing"></p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Agent ID"
+            required>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required>
+
+        <button type="submit">
+            ACCESS SYSTEM
+        </button>
+
+    </form>
+
+</div>
+
+<script>
+
+const messages = [
+"Connecting to Secure Network...",
+"Authenticating Agent...",
+"Decrypting Files...",
+"Access Granted."
+];
+
+let line = 0;
+let char = 0;
+
+function type(){
+
+    if(line >= messages.length) return;
+
+    document.getElementById("typing").innerHTML =
+    messages[line].substring(0,char);
+
+    char++;
+
+    if(char > messages[line].length){
+        line++;
+        char = 0;
+    }
+
+    setTimeout(type,70);
+}
+
+type();
+
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const letters="01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const fontSize=16;
+const columns=canvas.width/fontSize;
+
+const drops=[];
+
+for(let x=0;x<columns;x++){
+    drops[x]=1;
+}
+
+function draw(){
+
+    ctx.fillStyle="rgba(0,0,0,0.05)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#00ff66";
+    ctx.font=fontSize+"px monospace";
+
+    for(let i=0;i<drops.length;i++){
+
+        const text=letters[Math.floor(Math.random()*letters.length)];
+
+        ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+        if(drops[i]*fontSize>canvas.height && Math.random()>0.975){
+            drops[i]=0;
+        }
+
+        drops[i]++;
+    }
+
+}
+
+setInterval(draw,35);
+
+</script>
+
+</body>
+</html>

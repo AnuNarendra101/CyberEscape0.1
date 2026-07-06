@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mission 9 Diagnostic Console</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='mission9_console.css') }}">
+ </head>
+<body>
+
+<div class="background-grid"></div>
+
+<div class="scanline"></div>
+
+<div class="container">
+
+<h1>AI DIAGNOSTIC CONSOLE</h1>
+
+<p class="subtitle">AUTHORIZED ENGINEERS ONLY</p>
+
+<hr>
+
+<div id="terminal">
+
+<div id="bootText"></div>
+
+</div>
+
+<div id="loginBox" style="display:none;">
+
+<h2>Engineer Authentication</h2>
+
+<input
+type="text"
+id="password"
+placeholder="Enter Authentication Key">
+
+<br><br>
+
+<button onclick="checkPassword()">
+
+ACCESS SYSTEM
+
+</button>
+
+<div id="loginResult"></div>
+
+</div>
+
+<div id="loading" style="display:none;">
+
+<h2>Loading Diagnostics...</h2>
+
+<div class="progress">
+
+<div id="fill"></div>
+
+</div>
+
+</div>
+
+<div id="diagnostics" style="display:none;">
+
+<h2>SYSTEM POWER ANALYSIS</h2>
+
+<div id="report"></div>
+
+<br>
+
+<button id="returnBtn"
+onclick="window.location.href='/mission9'"
+style="display:none;">
+
+RETURN TO MOTHERBOARD
+
+</button>
+
+</div>
+
+</div>
+
+<div id="diagnostics" style="display:none;">
+    ...
+</div>
+
+<script src="{{ url_for('static', filename='mission9_console.js') }}"></script>
+
+</body>
+</html>

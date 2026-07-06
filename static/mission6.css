@@ -1,0 +1,269 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050b18;
+    color:#00eaff;
+    font-family:Consolas, monospace;
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+}
+
+/* Network Grid */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
+
+    background-size:50px 50px;
+
+    z-index:-2;
+}
+
+/* Glow */
+
+body::after{
+
+    content:"";
+
+    position:fixed;
+
+    width:900px;
+    height:900px;
+
+    border-radius:50%;
+
+    top:-250px;
+    right:-150px;
+
+    filter:blur(250px);
+
+    animation:neonShift 8s infinite alternate;
+
+    z-index:-1;
+}
+
+@keyframes neonShift{
+
+    0%{
+
+        background:#00ff66;
+        opacity:.08;
+
+    }
+
+    50%{
+
+        background:#00ffff;
+        opacity:.12;
+
+    }
+
+    100%{
+
+        background:#0066ff;
+        opacity:.08;
+
+    }
+
+}
+
+.container{
+
+    width:90%;
+    max-width:1100px;
+
+    margin:80px auto;
+
+    background:rgba(0,0,0,.85);
+
+    border:2px solid #00e5ff;
+
+    border-radius:25px;
+
+    padding:60px;
+
+    backdrop-filter:blur(10px);
+
+    box-shadow:
+    0 0 25px #00e5ff,
+    0 0 80px rgba(0,229,255,.5);
+
+    animation:borderGlow 6s infinite alternate;
+
+}
+
+h1{
+
+    font-size:80px;
+
+    text-align:center;
+
+    margin-bottom:15px;
+
+    letter-spacing:4px;
+
+}
+
+.subtitle{
+
+    text-align:center;
+
+    letter-spacing:5px;
+
+    margin-bottom:40px;
+
+}
+
+.route{
+
+    width:100%;
+
+    padding:25px;
+
+    margin:20px 0;
+
+    font-size:24px;
+
+    border-radius:18px;
+
+    border:2px solid #00e5ff;
+
+    background:#07121d;
+
+    color:#00e5ff;
+
+    transition:.3s;
+
+    cursor:pointer;
+
+}
+
+.brief h2{
+
+    color:#00ffff;
+
+    margin-bottom:20px;
+}
+
+.brief p{
+
+    margin-bottom:10px;
+}
+
+/* Route Cards */
+
+.route{
+
+    background:#08131f;
+
+    border:2px solid #00ffff;
+
+    padding:18px;
+
+    margin:15px 0;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.route:hover{
+
+    transform:scale(1.03);
+
+    box-shadow:
+    0 0 20px #00e5ff,
+    0 0 40px #00e5ff;
+
+}
+
+#result{
+
+    margin-top:30px;
+
+    font-size:20px;
+}
+
+@keyframes pulse{
+
+    0%,100%{
+        opacity:.05;
+    }
+
+    50%{
+        opacity:.12;
+    }
+}
+
+@keyframes borderGlow{
+
+    0%{
+
+        border-color:#00ff66;
+
+        box-shadow:
+        0 0 20px #00ff66,
+        0 0 50px #00ff66;
+
+    }
+
+    50%{
+
+        border-color:#00ffff;
+
+        box-shadow:
+        0 0 20px #00ffff,
+        0 0 50px #00ffff;
+
+    }
+
+    100%{
+
+        border-color:#0066ff;
+
+        box-shadow:
+        0 0 20px #0066ff,
+        0 0 50px #0066ff;
+
+    }
+
+}
+
+.status{
+
+    text-align:center;
+
+    color:#00ff66;
+
+    font-size:22px;
+
+    margin:30px 0;
+
+    animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:.4;
+    }
+
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+
+<div class="timer">
+TIME :
+<span id="timerDisplay">0</span>s
+</div>
+
+
+<head>
+    <title>Mission 8</title>
+    <link rel="stylesheet"
+      href="{{ url_for('static', filename='mission8.css') }}">
+</head>
+</head>
+
+<body>
+
+
+    <script src="{{ url_for('static', filename='score.js') }}"></script>
+
+
+<div class="noise"></div>
+<div class="container">
+
+<div class="cctv-header">
+
+    <span class="rec">🔴 REC</span>
+
+    <span id="datetime"></span>
+
+    <span> ● CAMERA FEED #04</span>
+
+</div>
+
+
+
+<h1>MISSION 8</h1>
+
+<p class="subtitle">
+    CCTV RECONSTRUCTION
+</p>
+<div class="camera-label">
+    ● CCTV FEED ACTIVE
+</div>
+<h2>MISSION BRIEF</h2>
+
+<p>
+    The hacker deleted a critical CCTV recording.
+</p>
+
+<p>
+    Reconstruct the timeline and identify the missing footage.
+</p>
+
+<hr>
+
+<h3>EVIDENCE</h3>
+
+<p>
+    VISUAL 1<br>
+    10:04 PM - Hacker enters building
+</p>
+
+<p>
+    VISUAL 2<br>
+    10:06 PM - Security door opens
+</p>
+
+<p>
+    VISUAL 3<br>
+    10:08 PM - Alarm triggered
+</p>
+
+<p>
+    VISUAL 4<br>
+    ??????
+</p>
+
+<hr>
+
+<h3>Which footage was deleted?</h3>
+
+<button onclick="checkAnswer('10:05 PM')">
+    A. 10:05 PM
+</button>
+
+<button onclick="checkAnswer('10:06 PM')">
+    B. 10:06 PM
+</button>
+
+<button onclick="checkAnswer('10:07 PM')">
+    C. 10:07 PM
+</button>
+
+<button onclick="checkAnswer('10:08 PM')">
+    D. 10:08 PM
+</button>
+
+<br><br>
+
+<div id="result"></div>
+```
+
+</div>
+
+<script>
+startMission();
+
+let seconds = 0;
+let wrongAttempts = 0;
+
+const timer = setInterval(function(){
+
+    seconds++;
+
+    document.getElementById("timerDisplay").innerHTML = seconds;
+
+},1000);
+
+function checkAnswer(choice){
+
+    let result = document.getElementById("result");
+
+    // CORRECT ANSWER
+
+    if(choice==="10:07 PM"){
+
+        clearInterval(timer);
+
+        finishMission(8);
+
+        result.innerHTML=`
+
+        <h2 style="color:lime;">
+        CCTV RECONSTRUCTED
+        </h2>
+
+        <p>Missing footage recovered.</p>
+
+        <p>10:07 PM - Hacker enters server room.</p>
+
+        <p>Timeline successfully restored.</p>
+
+        <p>Loading Mission 9...</p>
+
+        `;
+
+        setTimeout(function(){
+
+            window.location.href="/mission9";
+
+        },3000);
+
+    }
+
+    // WRONG ANSWER
+
+    else{
+
+        wrongAttempts++;
+
+        // FIRST WRONG
+
+        if(wrongAttempts==1){
+
+            retryMission();
+
+            result.innerHTML=`
+
+            <h2 style="color:orange;">
+
+            Wrong Timeline
+
+            </h2>
+
+            <p>You still have ONE retry.</p>
+
+            <button onclick="retryMission8()">
+
+            RETRY
+
+            </button>
+
+            `;
+
+        }
+
+        // SECOND WRONG
+
+        else{
+
+            clearInterval(timer);
+
+            failMission(8);
+
+            result.innerHTML=`
+
+            <h2 style="color:red;">
+
+            Mission Failed
+
+            </h2>
+
+            <p>Moving to Mission 9...</p>
+
+            `;
+
+            setTimeout(function(){
+
+                window.location.href="/mission9";
+
+            },2000);
+
+        }
+
+    }
+
+}
+
+function retryMission8(){
+
+    document.getElementById("result").innerHTML="";
+
+}
+
+
+function updateDateTime(){
+
+    let now = new Date();
+
+    document.getElementById("datetime").innerHTML =
+        now.toLocaleDateString() +
+        " " +
+        now.toLocaleTimeString();
+
+}
+
+setInterval(updateDateTime,1000);
+
+updateDateTime();
+
+</script>
+
+</body>
+</html>

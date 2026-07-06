@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body{
+    margin:0;
+    padding:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#0ea5e9);
+    color:white;
+}
+
+header{
+    background:rgba(0,0,0,0.5);
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.5);
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:15px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#00ffcc;
+}
+
+.container{
+    width:90%;
+    margin:auto;
+    padding:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    padding:20px;
+    border-radius:15px;
+    margin:20px 0;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 20px rgba(0,255,255,0.3);
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 30px cyan;
+}
+
+button{
+    background:#00d9ff;
+    color:black;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#00ff99;
+    transform:scale(1.05);
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border-radius:8px;
+    border:none;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#111827;
+    margin-top:40px;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mission 1</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='mission.css') }}">
+
+<style>
+
+body{
+    background:#000;
+    color:#00ff66;
+    font-family:Consolas,monospace;
+}
+
+.container{
+    width:700px;
+    margin:80px auto;
+    text-align:center;
+}
+
+h1{
+    margin-bottom:20px;
+}
+
+.box{
+    border:2px solid #00ff66;
+    padding:30px;
+    border-radius:10px;
+    background:#050505;
+    box-shadow:0 0 20px #00ff66;
+}
+
+input{
+    margin-top:20px;
+}
+
+button{
+    margin-top:20px;
+}
+
+#result{
+    margin-top:20px;
+    font-size:20px;
+}
+
+.clue{
+    margin-top:30px;
+    color:#66ff99;
+}
+
+.timer{
+    font-size:25px;
+    color:red;
+    margin-bottom:20px;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    background:repeating-linear-gradient(
+        transparent 0px,
+        transparent 3px,
+        rgba(0,255,102,0.04) 4px
+    );
+
+    pointer-events:none;
+    animation:scan 6s linear infinite;
+    z-index:-1;
+}
+
+@keyframes scan{
+    from{
+        background-position:0 0;
+    }
+    to{
+        background-position:0 100px;
+    }
+}
+.left-panel,
+.center-panel,
+.right-panel{
+    animation: floatBox 3s ease-in-out infinite;
+}
+
+@keyframes floatBox{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+    100%{transform:translateY(0);}
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:#00ff66;
+    filter:blur(150px);
+    opacity:.15;
+    animation:floatGlow 8s infinite alternate;
+    z-index:-2;
+}
+
+@keyframes floatGlow{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(700px,300px);
+    }
+}
+</style>
+
+</head>
+
+<body>
+<div class="game">
+
+    <div class="header">
+        <h1>MISSION 1 : SERVER BREACH</h1>
+    </div>
+
+    <div class="main">
+
+        <div class="left-panel">
+            <h2>FILES</h2>
+
+            <button onclick="openFile('employee')">
+                employee.txt
+            </button>
+
+            <button onclick="openFile('security')">
+                security.log
+            </button>
+
+            <button onclick="openFile('hint')">
+                password_hint.txt
+            </button>
+
+        </div>
+
+        <div class="center-panel">
+
+            <h2>Terminal</h2>
+
+            <div id="terminal">
+                Welcome Agent...
+            </div>
+
+        </div>
+
+        <div class="right-panel">
+
+            <h2>STATUS</h2>
+
+            <h3>
+                Time:
+                <span id="timer">60</span>
+            </h3>
+
+            <h3>
+                Lives:
+                ❤️❤️❤️
+            </h3>
+
+        </div>
+
+    </div>
+
+    <div class="bottom">
+
+        <input
+        id="code"
+        placeholder="Enter Access Code">
+
+        <button onclick="unlock()">
+            UNLOCK SERVER
+        </button>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+
+
+<script>
+    let lives = 3; 
+    let time = 60;
+
+startMission();
+
+let missionAttempts = 1;
+
+const terminal = document.getElementById("terminal");
+
+function log(text){
+    terminal.innerHTML += "<br>> " + text;
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+function openFile(file){
+
+    if(file=="employee"){
+        log("Employee: John Carter");
+        log("Clearance Level : 3");
+    }
+
+    if(file=="security"){
+        log("Firewall Active");
+        log("3 Failed Login Attempts");
+    }
+
+    if(file=="hint"){
+        log("PASSWORD HINT");
+        log("First Digit = 9");
+        log("Second Digit = 3");
+        log("Third Digit = 5");
+        log("Fourth Digit = 8");
+    }
+
+}
+
+function unlock(){
+
+    let code = document.getElementById("code").value;
+
+    if(code=="9358"){
+
+    finishMission(1);
+
+    log("ACCESS GRANTED");
+    log("Downloading Secret Files...");
+    log("MISSION COMPLETE!");
+
+    setTimeout(function(){
+
+        window.location.href="/mission2";
+
+    },1500);
+
+}
+    else{
+
+    lives--;
+
+    log("ACCESS DENIED");
+
+    if(lives==2){
+
+document.getElementById("result").innerHTML=`
+
+<h2 style="color:orange;">
+⚠ ACCESS DENIED
+</h2>
+
+<p>You still have ONE retry.</p>
+
+<button onclick="retryLevel()">
+
+RETRY MISSION
+
+</button>
+
+`;
+
+return;
+
+}
+
+    if(lives==2){
+
+    missionAttempts++;
+
+    document.getElementById("result").innerHTML=`
+
+    <h2 style="color:orange;">
+    ACCESS DENIED
+    </h2>
+
+    <p>You have ONE retry remaining.</p>
+
+    <button onclick="retryLevel()">
+        RETRY MISSION
+    </button>
+
+    `;
+
+}
+
+    else if(lives==1){
+
+        document.querySelector(".right-panel").innerHTML=
+        "<h2>STATUS</h2><h3>Time: <span id='timer'>"+time+"</span></h3><h3>Lives: ❤️</h3>";
+
+    }
+
+    else{
+
+        failMission(1);
+
+        log("MISSION FAILED");
+
+        log("Moving To Mission 2...");
+
+        setTimeout(function(){
+
+            window.location.href="/mission2";
+
+        },2000);
+
+    }
+
+}
+}
+
+function retryLevel(){
+
+    retryMission();
+
+    lives=3;
+
+    time=60;
+
+    document.getElementById("timer").innerHTML=time;
+
+    document.getElementById("code").value="";
+
+    document.getElementById("result").innerHTML="";
+
+    terminal.innerHTML="";
+
+    log("Retry Mission Started...");
+    log("Connecting to Secure Server...");
+    log("Firewall Detected...");
+    log("Waiting for Agent...");
+
+    document.querySelector(".right-panel").innerHTML=`
+        <h2>STATUS</h2>
+        <h3>Time: <span id="timer">60</span></h3>
+        <h3>Lives: ❤️❤️❤️</h3>
+    `;
+
+}
+
+setInterval(function(){
+
+    time--;
+
+    const timer=document.getElementById("timer");
+
+    if(timer){
+        timer.innerHTML=time;
+    }
+
+    if(time<=0){
+
+    failMission(1);
+
+    alert("Mission Failed!");
+
+    window.location.href="/mission2";
+
+}
+
+},1000);
+
+log("Connecting to Secure Server...");
+log("Firewall Detected...");
+log("Waiting for Agent...");
+
+
+function retryLevel(){
+
+retryMission();
+
+lives=3;
+
+time=60;
+
+document.getElementById("timer").innerHTML=time;
+
+document.getElementById("code").value="";
+
+document.getElementById("result").innerHTML="";
+
+terminal.innerHTML="";
+
+log("Retry Started...");
+log("Connecting...");
+log("Firewall Detected...");
+log("Waiting for Agent...");
+
+document.querySelector(".right-panel").innerHTML=`
+<h2>STATUS</h2>
+
+<h3>
+Time:
+<span id="timer">60</span>
+</h3>
+
+<h3>
+Lives:
+❤️❤️❤️
+</h3>
+
+`;
+
+}
+</script>
+</body>
+</html>
+

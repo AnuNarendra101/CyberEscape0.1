@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Mission 9</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='mission9.css') }}">
+
+</head>
+
+<body>
+
+<div class="background-grid"></div>
+
+<div class="scanline"></div>
+
+<div class="container">
+
+<h1>MISSION 9</h1>
+
+<p class="subtitle">
+DIGITAL CIRCUIT RECOVERY
+</p>
+
+<div class="brief">
+
+<h2>MISSION BRIEF</h2>
+
+<p>
+The hacker damaged the motherboard before escaping.
+</p>
+
+<p>
+One critical circuit has been disconnected.
+</p>
+
+<p>
+Reconnect the correct wire before the system permanently shuts down.
+</p>
+
+</div>
+<div class="diagnostic">
+
+<h3>
+⚠ Circuit analysis required.
+</h3>
+
+<p>
+Open the Diagnostic Console before repairing the motherboard.
+</p>
+
+<button onclick="window.location.href='/mission9_console'">
+
+OPEN DIAGNOSTIC CONSOLE
+
+</button>
+
+</div>
+<div class="board">
+
+    <div class="wireVertical"></div>
+
+   
+<div id="powerLine"></div>
+
+<div id="bootLog"></div>
+
+<div id="progressContainer">
+
+<p>Restoring Power...</p>
+
+<div id="progressBar">
+<div id="fill"></div>
+
+</div>
+
+</div>
+<div class="cpu">
+CPU
+</div>
+
+<div class="ram">
+RAM
+</div>
+
+<div class="ssd">
+SSD
+</div>
+
+<div class="usb">
+USB
+</div>
+
+<div class="firewall">
+AI CORE
+</div>
+
+<!-- correct wire -->
+
+<div class="wire wire1"
+onclick="correctWire()">
+</div>
+
+<!-- wrong -->
+
+<div class="wire wire2"
+onclick="wrongWire()">
+</div>
+
+<div class="wire wire3"
+onclick="wrongWire()">
+</div>
+
+<div class="wire wire4"
+onclick="wrongWire()">
+</div>
+
+</div>
+
+<div id="status">
+
+Choose the missing connection...
+
+</div>
+
+<div id="lights">
+
+<span class="led"></span>
+<span class="led"></span>
+<span class="led"></span>
+<span class="led"></span>
+
+</div>
+
+</div>
+
+
+<script>
+
+
+let diagnosticsCompleted = false;
+
+if(localStorage.getItem("diagnostic")=="done"){
+
+diagnosticsCompleted=true;
+
+}
+let lives=3;
+
+function correctWire(){
+
+document.querySelector(".wire1").classList.add("active");
+
+document.getElementById("status").innerHTML="⚡ CONNECTION ACCEPTED";
+
+
+// Electricity animation
+
+setTimeout(function(){
+
+document.getElementById("powerLine").style.width="180px";
+
+},800);
+
+
+// Progress bar
+
+setTimeout(function(){
+
+document.getElementById("progressContainer").style.display="block";
+
+document.getElementById("fill").style.width="100%";
+
+},2000);
+
+
+// Boot sequence
+
+let log=document.getElementById("bootLog");
+
+setTimeout(function(){
+
+log.innerHTML+="<p>CPU........ONLINE</p>";
+
+},2500);
+
+setTimeout(function(){
+
+log.innerHTML+="<p>RAM........ONLINE</p>";
+
+},3500);
+
+setTimeout(function(){
+
+log.innerHTML+="<p>SSD........ONLINE</p>";
+
+},4500);
+
+setTimeout(function(){
+
+log.innerHTML+="<p>USB........ONLINE</p>";
+
+},5500);
+
+setTimeout(function(){
+
+log.innerHTML+="<p>AI CORE....ONLINE</p>";
+
+},6500);
+
+
+// Entire motherboard lights up
+
+setTimeout(function(){
+
+document.querySelector(".board").classList.add("powered");
+
+},7000);
+
+
+// Final message
+
+setTimeout(function(){
+
+document.getElementById("status").innerHTML=`
+
+<h2 style="color:lime">
+✔ CORE SYSTEM RESTORED
+</h2>
+
+<br>
+
+<p id="loadingText"></p>
+
+`;
+
+let text="Loading Mission 10";
+
+let i=0;
+
+let loading=setInterval(function(){
+
+document.getElementById("loadingText").innerHTML=
+text + ".".repeat(i%4);
+
+i++;
+
+},400);
+
+setTimeout(function(){
+
+clearInterval(loading);
+
+window.location.href="/mission10";
+
+},3000);
+
+},9000);
+}
+
+
+</script>
+
+<script src="{{ url_for('static', filename='mission9_console.js') }}"></script>
+
+</body>
+</html>

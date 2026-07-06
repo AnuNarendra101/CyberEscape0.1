@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Mission 6</title>
+
+```
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='mission6.css') }}">
+```
+
+</head>
+
+<body>
+
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+
+<div class="container">
+
+```
+<h1>MISSION 6</h1>
+
+<p class="subtitle">
+    TRACE THE HACKER
+</p>
+
+
+<div class="timer">
+TIME :
+<span id="timerDisplay">0</span>s
+</div>
+
+<div class="brief">
+
+    <h2>MISSION BRIEF</h2>
+
+    <p>
+        The hacker is escaping through multiple proxy servers.
+    </p>
+
+    <p>
+        Trace the correct route before they disappear.
+    </p>
+
+    <div id="missionArea">
+
+        <h3>Tracking Signal...</h3>
+
+        <p>Signal Strength: 87%</p>
+
+        <p>Choose the next server:</p>
+
+        <p>
+            Server A → Germany<br>
+            Server B → Singapore<br>
+            Server C → Unknown
+        </p>
+
+        <input id="answer">
+
+        <button onclick="checkAnswer()">
+            TRACE
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+<p class="status">
+    🛰 NETWORK TRACE IN PROGRESS...
+</p>
+```
+
+</div>
+
+<script>
+
+startMission();
+
+let seconds = 0;
+
+let wrongAttempts = 0;
+
+let stage = 1;
+
+const timer = setInterval(function(){
+
+    seconds++;
+
+    document.getElementById("timerDisplay").innerHTML = seconds;
+
+},1000);
+
+function checkAnswer(){
+
+    let ans =
+    document.getElementById("answer")
+    .value
+    .trim()
+    .toLowerCase();
+
+    let result =
+    document.getElementById("result");
+
+    if(stage === 1){
+
+        if(ans === "server c"){
+
+            result.innerHTML = `
+            <h2 style="color:cyan;">
+            TRACE SUCCESSFUL
+            </h2>
+
+            <p>Proxy Layer 1 Bypassed</p>
+
+            <p>
+            192.168.10.4<br>
+            10.25.4.18<br>
+            172.16.5.22
+            </p>
+
+            <p>Select suspicious IP</p>
+            `;
+
+            stage = 2;
+
+        }else{
+
+            wrongAttempts++;
+
+if(wrongAttempts==1){
+
+    retryMission();
+
+    result.innerHTML=`
+
+    <h3 style="color:orange;">
+    Wrong Server
+    </h3>
+
+    <button onclick="retryMission6()">
+    RETRY
+    </button>
+
+    `;
+
+}
+else{
+
+    clearInterval(timer);
+
+    failMission(6);
+
+    result.innerHTML=`
+
+    <h2 style="color:red;">
+    Mission Failed
+    </h2>
+
+    <p>Loading Mission 7...</p>
+
+    `;
+
+    setTimeout(function(){
+
+        window.location.href="/mission7";
+
+    },2000);
+
+}
+        }
+    }
+
+    else if(stage === 2){
+
+        if(ans === "10.25.4.18"){
+
+            result.innerHTML += `
+            <hr>
+
+            <h2 style="color:lime;">
+            SUSPICIOUS IP FOUND
+            </h2>
+
+            <p>agent@trace-server:~$</p>
+
+            <p>Terminate hacker connection.</p>
+
+            <p>Type: kill connection</p>
+            `;
+
+            stage = 3;
+
+        }else{
+
+            wrongAttempts++;
+
+if(wrongAttempts==1){
+
+    retryMission();
+
+    result.innerHTML+=`
+
+    <h3 style="color:orange;">
+    Incorrect IP
+    </h3>
+
+    <button onclick="retryMission6()">
+    RETRY
+    </button>
+
+    `;
+
+}
+else{
+
+    clearInterval(timer);
+
+    failMission(6);
+
+    result.innerHTML=`
+
+    <h2 style="color:red;">
+    Mission Failed
+    </h2>
+
+    <p>Loading Mission 7...</p>
+
+    `;
+
+    setTimeout(function(){
+
+        window.location.href="/mission7";
+
+    },2000);
+
+}
+        }
+    }
+
+    else if(stage === 3){
+
+        if(ans === "kill connection"){
+
+            result.innerHTML += `
+            <hr>
+
+            <h2 style="color:lime;">
+            HACKER LOCATION FOUND
+            </h2>
+
+            <p>STATUS: CAPTURED</p>
+
+            <p>MISSION SUCCESS</p>
+
+            <p>Loading Mission 7...</p>
+            `;
+clearInterval(timer);
+
+finishMission(6);
+            setTimeout(function(){
+
+                window.location.href="/mission7";
+
+            },3000);
+
+        }else{
+
+           wrongAttempts++;
+
+if(wrongAttempts==1){
+
+    retryMission();
+
+    result.innerHTML+=`
+
+    <h3 style="color:orange;">
+    Command Failed
+    </h3>
+
+    <button onclick="retryMission6()">
+    RETRY
+    </button>
+
+    `;
+
+}
+else{
+
+    clearInterval(timer);
+
+    failMission(6);
+
+    result.innerHTML=`
+
+    <h2 style="color:red;">
+    Mission Failed
+    </h2>
+
+    <p>Loading Mission 7...</p>
+
+    `;
+
+    setTimeout(function(){
+
+        window.location.href="/mission7";
+
+    },2000);
+
+}
+        }
+    }
+
+    document.getElementById("answer").value = "";
+    document.getElementById("answer").addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+
+        checkAnswer();
+
+    }
+
+});
+
+function retryMission6(){
+
+    document.getElementById("answer").value="";
+
+    document.getElementById("result").innerHTML="";
+
+}
+}
+
+</script>
+
+</body>
+</html>

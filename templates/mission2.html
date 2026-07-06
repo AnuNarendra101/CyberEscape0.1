@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission 2</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='mission2.css') }}">
+</head>
+
+<body>
+
+    <!-- Binary Background -->
+    <div class="binary">
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+110010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101
+101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <h1>MISSION 2</h1>
+        <p class="subtitle">Decrypt the Secret File</p>
+
+        <div class="box">
+<div class="timer">
+
+TIME :
+
+<span id="timerDisplay">0</span>s
+
+</div>
+            <h3>Encrypted Message</h3>
+
+            <p id="cipher">KHOOR DJHQW</p>
+
+            <p class="hint">Hint: Caesar Cipher (-3)</p>
+
+            <input
+                type="text"
+                id="answer"
+                placeholder="Type decrypted message">
+
+            <br><br>
+
+            <button onclick="checkAnswer()">DECRYPT</button>
+
+            <div id="result"></div>
+
+        </div>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='score.js') }}"></script>
+
+<script>
+
+startMission();
+
+
+
+
+let seconds = 0;
+
+const timer = setInterval(function(){
+
+    seconds++;
+
+    document.getElementById("timerDisplay").innerHTML = seconds;
+
+},1000);
+
+function checkAnswer(){
+
+    let ans=document.getElementById("answer").value.trim().toUpperCase();
+
+    // --------------------
+    // CORRECT ANSWER
+    // --------------------
+
+    if(ans=="HELLO AGENT"){
+
+        clearInterval(timer);
+
+        finishMission(2, seconds);
+
+        document.getElementById("result").innerHTML=
+        "<h2 style='color:lime;'>✅ Mission Complete!</h2>";
+
+        setTimeout(function(){
+
+            window.location.href="/mission3";
+
+        },2000);
+
+    }
+
+    // --------------------
+    // WRONG ANSWER
+    // --------------------
+
+    else{
+
+        // First Failure
+
+        if(attempts==1){
+
+            retryMission();
+
+            document.getElementById("result").innerHTML=`
+
+            <h2 style="color:orange;">
+
+            ⚠ Wrong Answer
+
+            </h2>
+
+            <p>You still have ONE retry.</p>
+
+            <button onclick="retryMission2()">
+
+            RETRY
+
+            </button>
+
+            `;
+
+        }
+
+        // Second Failure
+
+        else{
+
+            clearInterval(timer);
+
+            let timeTaken = Math.floor((Date.now() - startTime) / 1000);
+
+failMission(2, seconds);
+
+            document.getElementById("result").innerHTML=`
+
+            <h2 style="color:red;">
+
+            ❌ Mission Failed
+
+            </h2>
+
+            <p>Moving to Mission 3...</p>
+
+            `;
+finishMission(2);
+            setTimeout(function(){
+
+                window.location.href="/mission3";
+
+            },2000);
+
+        }
+
+    }
+
+}
+
+function retryMission2(){
+
+    document.getElementById("answer").value="";
+
+    document.getElementById("result").innerHTML="";
+
+}
+
+</script>
+
+    <div class="scanlines"></div>
+    <div class="laser"></div>
+    <div class="cursor">▋</div>
+
+</body>
+
+</html>

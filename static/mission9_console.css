@@ -1,0 +1,428 @@
+/* ===========================
+   RESET
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ===========================
+   BODY
+=========================== */
+
+body{
+
+    background:#020202;
+
+    color:#00ffcc;
+
+    font-family:Consolas,monospace;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+
+/* ===========================
+   GRID BACKGROUND
+=========================== */
+
+.background-grid{
+
+    position:fixed;
+    inset:0;
+
+    background:
+
+    linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    z-index:-2;
+
+}
+
+
+/* ===========================
+   SCAN LINE
+=========================== */
+
+.scanline{
+
+    position:fixed;
+
+    left:0;
+    top:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+
+        transparent,
+        rgba(0,255,255,.10),
+        transparent
+
+    );
+
+    animation:scan 5s linear infinite;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+@keyframes scan{
+
+from{
+
+top:-100%;
+
+}
+
+to{
+
+top:100%;
+
+}
+
+}
+
+
+/* ===========================
+   MAIN CONTAINER
+=========================== */
+
+.container{
+
+    width:900px;
+
+    background:#000;
+
+    border:3px solid cyan;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    box-shadow:
+
+    0 0 20px cyan,
+    0 0 50px cyan,
+    0 0 120px cyan;
+
+}
+
+
+/* ===========================
+   TITLE
+=========================== */
+
+h1{
+
+    color:#00ffff;
+
+    text-align:center;
+
+    letter-spacing:5px;
+
+}
+
+.subtitle{
+
+    color:red;
+
+    text-align:center;
+
+    margin:15px 0;
+
+    animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:.3;
+
+}
+
+}
+
+
+/* ===========================
+   TERMINAL
+=========================== */
+
+#terminal{
+
+    margin-top:25px;
+
+    background:#010101;
+
+    border:2px solid #00ffff;
+
+    padding:20px;
+
+    height:250px;
+
+    overflow-y:auto;
+
+    color:#00ff66;
+
+    font-size:18px;
+
+    line-height:35px;
+
+    box-shadow:
+
+    inset 0 0 20px cyan;
+
+}
+
+
+/* ===========================
+   LOGIN BOX
+=========================== */
+
+#loginBox{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+input{
+
+    width:350px;
+
+    padding:12px;
+
+    background:black;
+
+    border:2px solid cyan;
+
+    color:#00ff66;
+
+    font-size:18px;
+
+    outline:none;
+
+}
+
+input:focus{
+
+    box-shadow:
+
+    0 0 20px cyan;
+
+}
+
+
+/* ===========================
+   BUTTON
+=========================== */
+
+button{
+
+    background:black;
+
+    color:cyan;
+
+    border:2px solid cyan;
+
+    padding:12px 25px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:cyan;
+
+    color:black;
+
+    box-shadow:
+
+    0 0 20px cyan;
+
+}
+
+
+/* ===========================
+   LOGIN RESULT
+=========================== */
+
+#loginResult{
+
+    margin-top:20px;
+
+    font-size:22px;
+
+    min-height:40px;
+
+}
+
+
+/* ===========================
+   LOADING BAR
+=========================== */
+
+#loading{
+
+    margin-top:40px;
+
+    text-align:center;
+
+}
+
+.progress{
+
+    width:600px;
+
+    height:22px;
+
+    border:2px solid cyan;
+
+    margin:25px auto;
+
+}
+
+#fill{
+
+    width:0;
+
+    height:100%;
+
+    background:lime;
+
+    transition:4s linear;
+
+}
+
+
+/* ===========================
+   DIAGNOSTICS
+=========================== */
+
+#diagnostics{
+
+    margin-top:40px;
+
+    text-align:center;
+
+}
+
+#report{
+
+    margin-top:25px;
+
+    text-align:left;
+
+    display:inline-block;
+
+    font-size:24px;
+
+    line-height:50px;
+
+    color:#00ff66;
+
+    text-shadow:
+
+    0 0 8px lime;
+
+}
+
+
+/* ===========================
+   RETURN BUTTON
+=========================== */
+
+#returnBtn{
+
+    margin-top:40px;
+
+}
+
+
+/* ===========================
+   CURSOR EFFECT
+=========================== */
+
+.cursor{
+
+    animation:cursorBlink .8s infinite;
+
+}
+
+@keyframes cursorBlink{
+
+50%{
+
+opacity:0;
+
+}
+
+}
+
+
+/* ===========================
+   TERMINAL FLICKER
+=========================== */
+
+.container{
+
+animation:flicker .12s infinite;
+
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+20%{opacity:.98;}
+40%{opacity:1;}
+60%{opacity:.97;}
+80%{opacity:1;}
+100%{opacity:.99;}
+
+}
+
+
+/* ===========================
+   GLOWING REPORT
+=========================== */
+
+.success{
+
+color:lime;
+
+}
+
+.error{
+
+color:red;
+
+text-shadow:
+
+0 0 10px red;
+
+}

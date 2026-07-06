@@ -1,0 +1,232 @@
+ ```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MISSION 10 - AI CORE LOCKDOWN</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='mission10.css') }}">
+
+</head>
+
+<body>
+
+<!-- Background -->
+
+<div class="grid"></div>
+<div class="scanline"></div>
+<div class="particles"></div>
+
+<div class="container">
+
+<h1>MISSION 10</h1>
+
+<h2>AI CORE : FINAL LOCKDOWN</h2>
+
+<!-- AI Message -->
+
+<div class="dialogBox">
+
+<div id="dialog">
+
+INITIALIZING AI SECURITY...
+
+</div>
+
+</div>
+
+<!-- Timer -->
+
+<div id="timerBox">
+
+TIME REMAINING
+
+<div id="timer">
+
+60
+
+</div>
+
+</div>
+
+<!-- Memory Message -->
+
+<div id="message">
+
+WATCH THE SECURITY SEQUENCE
+
+</div>
+
+<!-- Vault -->
+
+<div class="vault">
+
+<!-- AI CORE -->
+
+<div class="centerCore">
+
+<div class="coreGlow"></div>
+
+<div class="coreText">
+
+AI CORE
+
+</div>
+
+</div>
+
+<!-- LOCK 1 -->
+
+<div
+class="lock lock1"
+id="lock1"
+onclick="playerClick(1)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+<!-- LOCK 2 -->
+
+<div
+class="lock lock2"
+id="lock2"
+onclick="playerClick(2)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+<!-- LOCK 3 -->
+
+<div
+class="lock lock3"
+id="lock3"
+onclick="playerClick(3)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+<!-- LOCK 4 -->
+
+<div
+class="lock lock4"
+id="lock4"
+onclick="playerClick(4)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+<!-- LOCK 5 -->
+
+<div
+class="lock lock5"
+id="lock5"
+onclick="playerClick(5)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+<!-- LOCK 6 -->
+
+<div
+class="lock lock6"
+id="lock6"
+onclick="playerClick(6)">
+
+<div class="ring"></div>
+
+<div class="node"></div>
+
+</div>
+
+</div>
+
+<!-- Progress -->
+
+<div class="status">
+
+<h3>
+
+SECURITY LOCKS
+
+</h3>
+
+<div class="lights">
+
+<span id="s1">⚪</span>
+
+<span id="s2">⚪</span>
+
+<span id="s3">⚪</span>
+
+<span id="s4">⚪</span>
+
+<span id="s5">⚪</span>
+
+<span id="s6">⚪</span>
+
+</div>
+
+</div>
+
+<!-- Mission Objective -->
+
+<div class="objective">
+
+Observe the security pattern.
+
+Repeat it perfectly before time expires.
+
+</div>
+
+</div>
+
+<!-- Mission Complete Screen -->
+
+<div id="victory">
+
+<h1>
+
+AI CORE DESTROYED
+
+</h1>
+
+<h2>
+
+MISSION COMPLETE
+
+</h2>
+
+<button onclick="window.location.href='/scoreboard';">
+
+FINISH CYBERESCAPE
+
+</button>
+
+</div>
+
+<script src="{{ url_for('static', filename='mission10.js') }}"></script>
+
+</body>
+
+</html>
+```

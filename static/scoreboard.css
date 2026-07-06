@@ -1,0 +1,402 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#02040b;
+font-family:Consolas,monospace;
+overflow:hidden;
+color:white;
+
+}
+
+/* ========================= */
+
+.background{
+
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(rgba(0,255,255,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,255,255,.05) 1px,transparent 1px);
+
+background-size:45px 45px;
+
+animation:grid 20s linear infinite;
+
+z-index:-5;
+
+}
+
+@keyframes grid{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(45px);
+
+}
+
+}
+
+/* ========================= */
+
+.scanline{
+
+position:fixed;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(
+
+transparent,
+rgba(0,255,255,.08),
+transparent
+
+);
+
+animation:scan 6s linear infinite;
+
+pointer-events:none;
+
+z-index:-4;
+
+}
+
+@keyframes scan{
+
+from{
+
+transform:translateY(-100%);
+
+}
+
+to{
+
+transform:translateY(100%);
+
+}
+
+}
+
+/* ========================= */
+
+.container{
+
+width:900px;
+
+margin:auto;
+
+padding-top:35px;
+
+text-align:center;
+
+}
+
+/* ========================= */
+
+h1{
+
+font-size:58px;
+
+letter-spacing:6px;
+
+color:#00ffff;
+
+text-shadow:
+
+0 0 20px cyan,
+0 0 50px cyan;
+
+}
+
+h2{
+
+margin-top:10px;
+
+letter-spacing:3px;
+
+font-size:28px;
+
+}
+
+/* ========================= */
+
+#loadingScreen{
+
+margin-top:60px;
+
+}
+
+#loadingText{
+
+font-size:28px;
+
+margin-bottom:25px;
+
+color:#00ffff;
+
+}
+
+.progressBox{
+
+width:700px;
+
+height:30px;
+
+margin:auto;
+
+border:2px solid cyan;
+
+background:#000;
+
+overflow:hidden;
+
+box-shadow:0 0 20px cyan;
+
+}
+
+#loadingBar{
+
+height:100%;
+width:0%;
+
+background:linear-gradient(
+
+90deg,
+cyan,
+#00ff99
+
+);
+
+}
+
+/* ========================= */
+
+#report{
+
+margin-top:40px;
+
+padding:30px;
+
+background:rgba(0,15,30,.7);
+
+border:2px solid cyan;
+
+border-radius:20px;
+
+box-shadow:
+
+0 0 30px cyan;
+
+}
+
+table{
+
+width:100%;
+
+margin-top:25px;
+
+border-collapse:collapse;
+
+font-size:24px;
+
+}
+
+td{
+
+padding:12px;
+
+border-bottom:1px solid rgba(0,255,255,.25);
+
+}
+
+td:last-child{
+
+font-weight:bold;
+
+color:lime;
+
+}
+
+/* ========================= */
+
+.total{
+
+margin-top:35px;
+
+font-size:28px;
+
+}
+
+#totalScore{
+
+margin-top:15px;
+
+font-size:60px;
+
+color:lime;
+
+text-shadow:
+
+0 0 20px lime,
+0 0 50px lime;
+
+}
+
+/* ========================= */
+
+.rank{
+
+margin-top:40px;
+
+}
+
+#rankText{
+
+font-size:52px;
+
+color:gold;
+
+text-shadow:
+
+0 0 20px gold,
+0 0 50px gold;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+}
+
+/* ========================= */
+
+.stats{
+
+margin-top:45px;
+
+font-size:24px;
+
+line-height:2;
+
+}
+
+.stats span{
+
+color:#00ffff;
+
+font-weight:bold;
+
+}
+
+/* ========================= */
+
+#glitchEnding{
+
+margin-top:140px;
+
+animation:glitch 0.15s infinite;
+
+}
+
+@keyframes glitch{
+
+0%{transform:translate(2px);}
+25%{transform:translate(-2px);}
+50%{transform:translate(3px,-2px);}
+75%{transform:translate(-3px,2px);}
+100%{transform:translate(0);}
+
+}
+
+/* ========================= */
+
+#thankYou{
+
+margin-top:90px;
+
+}
+
+#thankYou h1{
+
+font-size:70px;
+
+}
+
+#thankYou h2{
+
+font-size:40px;
+
+margin-top:15px;
+
+}
+
+#thankYou h3{
+
+font-size:30px;
+
+margin-top:30px;
+
+}
+
+#thankYou p{
+
+font-size:24px;
+
+margin-top:15px;
+
+}
+
+/* ========================= */
+
+button{
+
+margin-top:45px;
+
+padding:18px 45px;
+
+font-size:24px;
+
+background:black;
+
+color:cyan;
+
+border:2px solid cyan;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:
+
+0 0 20px cyan;
+
+}
+
+button:hover{
+
+background:cyan;
+
+color:black;
+
+transform:scale(1.08);
+
+}

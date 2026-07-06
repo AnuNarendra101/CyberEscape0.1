@@ -1,0 +1,567 @@
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    background:#020202;
+    color:#00ffcc;
+    font-family:monospace;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    min-height:100vh;
+    overflow:hidden;
+
+    position:relative;
+}
+
+
+/* ===========================
+   GRID BACKGROUND
+=========================== */
+
+.background-grid{
+
+    position:fixed;
+    inset:0;
+
+    background:
+
+    linear-gradient(rgba(0,255,255,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,255,255,.08) 1px,transparent 1px);
+
+    background-size:60px 60px;
+
+    z-index:-2;
+
+}
+
+
+/* ===========================
+   SCAN EFFECT
+=========================== */
+
+.scanline{
+
+    position:fixed;
+
+    left:0;
+    top:-100%;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+
+    transparent,
+    rgba(0,255,255,.12),
+    transparent
+
+    );
+
+    animation:scan 5s linear infinite;
+
+    pointer-events:none;
+
+    z-index:-1;
+
+}
+
+@keyframes scan{
+
+from{
+
+top:-100%;
+
+}
+
+to{
+
+top:100%;
+
+}
+
+}
+
+
+/* ===========================
+   MAIN CONTAINER
+=========================== */
+
+.container{
+
+    width:1050px;
+
+    background:#000;
+
+    border:3px solid cyan;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:center;
+
+    position:relative;
+
+    box-shadow:
+
+    0 0 20px cyan,
+    0 0 60px cyan,
+    0 0 120px cyan;
+
+}
+
+
+/* ===========================
+   TITLES
+=========================== */
+
+h1{
+
+    color:#00ffff;
+
+    letter-spacing:5px;
+
+    margin-bottom:15px;
+
+}
+
+.subtitle{
+
+    color:red;
+
+    animation:blink 1s infinite;
+
+    margin-bottom:30px;
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:.4;
+
+}
+
+}
+
+
+/* ===========================
+   BOARD
+=========================== */
+
+.board{
+
+    width:760px;
+
+    height:420px;
+
+    margin:40px auto;
+
+    border:2px solid cyan;
+
+    background:#041414;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+/* motherboard pattern */
+
+.board::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(rgba(0,255,255,.05) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,255,255,.05) 1px,transparent 1px);
+
+background-size:40px 40px;
+
+}
+
+
+/* ===========================
+   COMPONENTS
+=========================== */
+
+.cpu,
+.ram,
+.usb,
+.ssd,
+.firewall{
+
+position:absolute;
+
+width:110px;
+height:70px;
+
+border:2px solid cyan;
+
+background:#000;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-weight:bold;
+
+box-shadow:
+
+0 0 15px cyan;
+
+}
+
+
+.cpu{
+
+left:60px;
+top:40px;
+
+}
+
+.ram{
+
+right:60px;
+top:40px;
+
+}
+
+.usb{
+
+left:60px;
+bottom:40px;
+
+}
+
+.ssd{
+
+right:60px;
+bottom:40px;
+
+}
+
+.firewall{
+
+left:320px;
+top:170px;
+
+width:120px;
+height:80px;
+
+}
+
+
+/* ===========================
+   WIRES
+=========================== */
+
+.wire{
+
+position:absolute;
+
+background:#444;
+
+cursor:pointer;
+
+transition:.5s;
+
+}
+
+.wire:hover{
+
+background:red;
+
+}
+
+
+.wire1{
+
+left:170px;
+top:72px;
+
+width:240px;
+height:8px;
+
+}
+
+.wire2{
+
+left:410px;
+top:72px;
+
+width:180px;
+height:8px;
+
+}
+
+.wire3{
+
+left:170px;
+top:300px;
+
+width:240px;
+height:8px;
+
+}
+
+.wire4{
+
+left:410px;
+top:210px;
+
+width:8px;
+height:100px;
+
+}
+
+
+/* ===========================
+   CORRECT WIRE
+=========================== */
+
+.active{
+
+background:lime;
+
+box-shadow:
+
+0 0 15px lime,
+0 0 30px lime,
+0 0 60px lime;
+
+animation:pulse .5s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+transform:scale(1.05);
+
+}
+
+}
+
+
+/* ===========================
+   STATUS
+=========================== */
+
+#status{
+
+font-size:28px;
+
+margin-top:30px;
+
+min-height:80px;
+
+font-weight:bold;
+
+}
+
+
+/* ===========================
+   LED LIGHTS
+=========================== */
+
+#lights{
+
+margin-top:30px;
+
+}
+
+.led{
+
+width:20px;
+height:20px;
+
+display:inline-block;
+
+border-radius:50%;
+
+background:#222;
+
+margin:12px;
+
+transition:.5s;
+
+}
+
+.on{
+
+background:lime;
+
+box-shadow:
+
+0 0 15px lime,
+0 0 30px lime,
+0 0 60px lime;
+
+}
+
+
+/* ===========================
+   PROGRESS BAR
+=========================== */
+
+#progressContainer{
+
+display:none;
+
+margin-top:35px;
+
+}
+
+#progressBar{
+
+width:550px;
+
+height:22px;
+
+border:2px solid cyan;
+
+margin:auto;
+
+}
+
+#fill{
+
+width:0;
+
+height:100%;
+
+background:lime;
+
+transition:4s linear;
+
+}
+
+
+/* ===========================
+   BOOT LOG
+=========================== */
+
+#bootLog{
+
+margin-top:40px;
+
+font-size:28px;
+
+line-height:50px;
+
+color:#00ff66;
+
+font-weight:bold;
+
+letter-spacing:3px;
+
+min-height:280px;
+
+text-shadow:
+
+0 0 10px lime,
+0 0 25px lime,
+0 0 50px lime;
+
+animation:flicker .15s infinite;
+
+}
+
+@keyframes flicker{
+
+0%{opacity:1;}
+25%{opacity:.75;}
+50%{opacity:1;}
+75%{opacity:.85;}
+100%{opacity:1;}
+
+}
+
+
+/* ===========================
+   RESTORED BOARD
+=========================== */
+
+.powered{
+
+animation:boardGlow 2s infinite alternate;
+
+}
+
+@keyframes boardGlow{
+
+from{
+
+box-shadow:
+
+0 0 20px cyan;
+
+}
+
+to{
+
+box-shadow:
+
+0 0 60px cyan,
+0 0 120px cyan,
+0 0 220px blue;
+
+}
+}
+
+/* ===========================
+   SHAKE
+=========================== */
+
+.shake{
+
+animation:shake .35s;
+
+}
+
+@keyframes shake{
+
+0%{transform:translateX(-8px);}
+25%{transform:translateX(8px);}
+50%{transform:translateX(-8px);}
+75%{transform:translateX(8px);}
+100%{transform:translateX(0);}
+
+}
+
+.wireVertical{
+
+    position:absolute;
+
+    width:8px;
+    height:220px;
+
+    background:#555;
+
+    left:590px;   /* adjust if needed */
+    top:70px;     /* adjust if needed */
+
+    pointer-events:none;
+
+}

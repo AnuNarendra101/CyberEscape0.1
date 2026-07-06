@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Mission 4</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='mission4.css') }}">
+
+</head>
+<body>
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+<div class="binary-bg"></div>
+
+<div class="vault-ring"></div>
+<div class="vault-ring ring2"></div>
+
+
+
+<div class="container">
+
+    <div class="timer">
+⏱ Time :
+<span id="timerDisplay">0</span>s
+</div>
+
+
+
+    <h1>🔐 MISSION 4 - PASSWORD VAULT</h1>
+
+    <p>
+    The hacker locked the stolen files inside a secure vault.
+    <br><br>
+    Only the correct password can unlock it.
+    </p>
+
+    <hr>
+
+    <p id="attempts">Attempts Remaining: 3</p>
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Enter Password">
+
+    <button onclick="checkPassword()">
+        Unlock
+    </button>
+
+    <div id="hint"></div>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+startMission();
+
+let seconds = 0;
+
+let wrongAttempts = 0;
+
+const timer = setInterval(function(){
+
+    seconds++;
+
+    document.getElementById("timerDisplay").innerHTML = seconds;
+
+},1000);
+
+let passwordAttempts = 3;
+
+function checkPassword(){
+
+
+    let password = document.getElementById("password").value.trim().toLowerCase();
+
+    let hint = document.getElementById("hint");
+
+    let result = document.getElementById("result");
+
+    if(password === "escape2026"){
+
+    clearInterval(timer);
+
+    finishMission(4);
+
+        result.innerHTML = `
+
+        <h2 style="color:lime;">
+        ACCESS GRANTED
+        </h2>
+
+        <p>
+        Decrypting Vault...
+        </p>
+
+        <p>
+        ███░░░░░ 30%
+        </p>
+
+        <p>
+        ██████░░ 60%
+        </p>
+
+        <p>
+        ██████████ 100%
+        </p>
+
+        <h3>
+        Sensitive files recovered.
+        </h3>
+
+        <p>
+        Mission Complete!
+        </p>
+
+        <p style="color:yellow;">
+        Loading Mission 5...
+        </p>
+        `;
+
+        document.getElementById("password").disabled = true;
+        document.querySelector("button").disabled = true;
+
+        setTimeout(function(){
+
+    window.location.href = "/mission5";
+
+},3000);
+        return;
+    }
+
+   wrongAttempts++;
+
+if(wrongAttempts==1){
+
+    retryMission();
+
+    document.getElementById("attempts").innerHTML =
+"Attempts Remaining: " + passwordAttempts;
+
+    document.getElementById("hint").innerHTML=`
+
+    <h3 style="color:orange;">
+
+    ❌ Wrong Password
+
+    </h3>
+
+    <button onclick="retryMission4()">
+
+    RETRY
+
+    </button>
+
+    `;
+
+    return;
+
+}
+    if(passwordAttempts==2){
+
+        hint.innerHTML=`
+        <p style="color:yellow;">
+        💡 Hint 1:
+        The password starts with the codename of this operation.
+        </p>`;
+    }
+
+    else if(passwordAttempts==1){
+
+        hint.innerHTML=`
+        <p style="color:yellow;">
+        💡 Hint 2:
+        It ends with the current year.
+        </p>`;
+    }
+
+    else{
+
+    clearInterval(timer);
+
+    failMission(4);
+
+    hint.innerHTML=`
+
+    <h2 style="color:red;">
+
+    ❌ Mission Failed
+
+    </h2>
+
+    <p>
+
+    Moving to Mission 5...
+
+    </p>
+
+    `;
+
+    setTimeout(function(){
+
+        window.location.href="/mission5";
+
+    },2000);
+
+}
+
+    document.getElementById("password").value="";
+
+}
+
+  function retryMission4(){
+
+    document.getElementById("password").value="";
+
+    document.getElementById("hint").innerHTML="";
+
+}
+
+
+document.getElementById("password").addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+
+        checkPassword();
+
+    }
+
+});
+
+</script>
+</body>
+</html>

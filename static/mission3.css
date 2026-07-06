@@ -1,0 +1,357 @@
+/* ===========================
+   MISSION 3 - LINUX TERMINAL
+   =========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#39ff14;
+    font-family:Consolas, monospace;
+    overflow-x:hidden;
+    position:relative;
+}
+
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-2;
+    opacity:.15;
+
+    background-image:
+        linear-gradient(#39ff14,#39ff14),
+        linear-gradient(#39ff14,#39ff14),
+        linear-gradient(#39ff14,#39ff14),
+        linear-gradient(#39ff14,#39ff14),
+        linear-gradient(#39ff14,#39ff14),
+        radial-gradient(circle,#39ff14 3px,transparent 4px),
+        radial-gradient(circle,#39ff14 3px,transparent 4px),
+        radial-gradient(circle,#39ff14 3px,transparent 4px),
+        radial-gradient(circle,#39ff14 3px,transparent 4px);
+
+    background-repeat:no-repeat;
+
+    background-size:
+        220px 3px,
+        3px 140px,
+        180px 3px,
+        3px 120px,
+        250px 3px,
+        10px 10px,
+        10px 10px,
+        10px 10px,
+        10px 10px;
+
+    background-position:
+        60px 120px,
+        280px 120px,
+        280px 260px,
+        460px 260px,
+        460px 380px,
+        55px 116px,
+        275px 116px,
+        455px 256px,
+        705px 376px;
+}
+/* ===========================
+   Animated Background Grid
+   =========================== */
+
+/* ===========================
+   Animated Background Grid
+   =========================== */
+
+
+/* ===========================
+   Animated Green Glow
+   =========================== */
+
+body::after{
+    content:"";
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:#39ff14;
+    filter:blur(250px);
+    opacity:.03;
+    top:-200px;
+    right:-100px;
+    animation:glowPulse 5s ease-in-out infinite;
+    z-index:-1;
+}
+
+
+
+/* ===========================
+   Scan Line
+   =========================== */
+
+
+
+/* ===========================
+   Main Container
+   =========================== */
+
+.container{
+    width:85%;
+    max-width:950px;
+    margin:40px auto;
+    background:#101010;
+    border:2px solid #39ff14;
+    border-radius:18px;
+    padding:35px;
+    box-shadow:
+        0 0 20px #39ff14,
+        inset 0 0 15px rgba(57,255,20,.2);
+}
+
+/* ===========================
+   Title
+   =========================== */
+
+h1{
+    text-align:center;
+    font-size:55px;
+    color:#39ff14;
+    margin-bottom:15px;
+    text-shadow:
+        0 0 10px #39ff14,
+        0 0 20px #39ff14,
+        0 0 40px #39ff14;
+    animation:titleGlow 2s ease-in-out infinite;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:24px;
+    color:#7dff7d;
+    margin-bottom:35px;
+    letter-spacing:3px;
+}
+
+/* ===========================
+   Mission Brief
+   =========================== */
+
+.brief{
+    background:#181818;
+    border-left:6px solid #39ff14;
+    padding:25px;
+    border-radius:12px;
+    margin-bottom:30px;
+    box-shadow:0 0 15px rgba(57,255,20,.3);
+}
+
+.brief h2{
+    margin-bottom:20px;
+    color:#39ff14;
+}
+
+.brief p{
+    line-height:1.8;
+    color:#d8ffd8;
+    margin-bottom:15px;
+}
+
+/* ===========================
+   Terminal
+   =========================== */
+
+.terminal{
+    background:#000;
+    border:2px solid #39ff14;
+    border-radius:12px;
+    padding:25px;
+    box-shadow:0 0 20px rgba(57,255,20,.4);
+    animation:terminalGlow 2s infinite alternate;
+}
+
+.terminal h3{
+    color:#39ff14;
+    margin-bottom:15px;
+}
+
+.prompt{
+    color:#00ff66;
+    font-size:20px;
+    margin:20px 0;
+}
+
+.task{
+    margin-bottom:20px;
+    color:#d8ffd8;
+}
+
+/* ===========================
+   Input
+   =========================== */
+
+input{
+    width:100%;
+    padding:14px;
+    background:#050505;
+    color:#39ff14;
+    border:2px solid #39ff14;
+    border-radius:8px;
+    font-size:17px;
+    font-family:Consolas, monospace;
+}
+
+input:focus{
+    outline:none;
+    box-shadow:0 0 20px #39ff14;
+}
+
+/* ===========================
+   Button
+   =========================== */
+
+button{
+    margin-top:25px;
+    width:220px;
+    padding:15px;
+    background:#39ff14;
+    color:#000;
+    border:none;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#00ff66;
+    transform:scale(1.05);
+    box-shadow:0 0 20px #39ff14;
+}
+
+/* ===========================
+   Output
+   =========================== */
+
+#output{
+    margin-top:25px;
+    background:#050505;
+    border:2px solid #39ff14;
+    padding:18px;
+    border-radius:10px;
+    color:#39ff14;
+    min-height:70px;
+    white-space:pre-wrap;
+}
+
+.success{
+    color:#39ff14;
+    font-weight:bold;
+}
+
+.error{
+    color:#ff3b3b;
+    font-weight:bold;
+}
+
+/* ===========================
+   Animations
+   =========================== */
+
+@keyframes gridMove{
+
+    from{
+
+        background-position:
+            0 0,
+            0 0,
+            0 0;
+
+    }
+
+    to{
+
+        background-position:
+            60px 60px,
+            60px 60px,
+            30px 30px;
+
+    }
+
+}
+
+@keyframes glowPulse{
+
+    0%,100%{
+        transform:scale(1);
+        opacity:.05;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:.12;
+    }
+
+}
+
+@keyframes terminalGlow{
+
+    from{
+        box-shadow:0 0 15px #39ff14;
+    }
+
+    to{
+        box-shadow:
+            0 0 30px #39ff14,
+            0 0 60px #39ff14;
+    }
+
+}
+
+@keyframes titleGlow{
+
+    0%,100%{
+        text-shadow:
+            0 0 10px #39ff14,
+            0 0 20px #39ff14,
+            0 0 40px #39ff14;
+    }
+
+    50%{
+        text-shadow:
+            0 0 25px #39ff14,
+            0 0 50px #39ff14,
+            0 0 80px #39ff14;
+    }
+
+}
+
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media(max-width:768px){
+
+.container{
+    width:95%;
+    padding:20px;
+}
+
+h1{
+    font-size:40px;
+}
+
+.subtitle{
+    font-size:18px;
+}
+
+button{
+    width:100%;
+}
+
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MISSION 7 - MEMORY WIPE</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='mission7.css') }}">
+
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="scanline"></div>
+
+<div class="container">
+
+    <h1>MISSION 7</h1>
+
+    <h2>MEMORY WIPE</h2>
+
+    <div class="brief">
+
+        <h3>MISSION BRIEF</h3>
+
+        <p>
+            The hacker activated a memory wipe protocol.
+        </p>
+
+        <p>
+            Three encrypted memory fragments will appear.
+        </p>
+
+        <p>
+            Memorize every fragment before the AI erases them.
+        </p>
+
+        <p class="warning">
+            ⚠ You only get TWO attempts.
+        </p>
+
+    </div>
+
+    <div class="game">
+
+        <div id="status">
+
+            AI INITIALIZING...
+
+        </div>
+
+        <div id="memoryBox">
+
+            <div id="memoryColor">
+
+                GREEN
+
+            </div>
+
+            <div id="memoryCode">
+
+                XXXXXXX
+
+            </div>
+
+        </div>
+
+        <div id="questionBox" style="display:none;">
+
+            <h2 id="question"></h2>
+
+            <div id="choices"></div>
+
+        </div>
+
+        <div id="result"></div>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+<script src="{{ url_for('static', filename='mission7.js') }}"></script>
+</body>
+
+</html>

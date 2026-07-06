@@ -1,0 +1,421 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+background:#03050d;
+font-family:Consolas,monospace;
+overflow:hidden;
+color:white;
+
+}
+
+/* ================= BACKGROUND ================= */
+
+.background{
+
+position:fixed;
+inset:0;
+
+background:
+linear-gradient(rgba(0,255,255,.06) 1px,transparent 1px),
+linear-gradient(90deg,rgba(0,255,255,.06) 1px,transparent 1px);
+
+background-size:50px 50px;
+
+animation:gridMove 18s linear infinite;
+
+z-index:-5;
+
+}
+
+@keyframes gridMove{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(50px);
+
+}
+
+}
+
+.scanline{
+
+position:fixed;
+width:100%;
+height:100%;
+
+background:linear-gradient(
+
+transparent,
+rgba(0,255,255,.08),
+transparent
+
+);
+
+animation:scan 5s linear infinite;
+
+pointer-events:none;
+
+z-index:-4;
+
+}
+
+@keyframes scan{
+
+from{
+
+transform:translateY(-100%);
+
+}
+
+to{
+
+transform:translateY(100%);
+
+}
+
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+
+width:900px;
+
+margin:auto;
+
+padding-top:40px;
+
+text-align:center;
+
+}
+
+/* ================= HEADINGS ================= */
+
+h1{
+
+font-size:60px;
+
+color:#00ffff;
+
+letter-spacing:6px;
+
+text-shadow:
+
+0 0 20px cyan,
+0 0 50px cyan;
+
+}
+
+h2{
+
+margin-top:10px;
+
+font-size:28px;
+
+letter-spacing:4px;
+
+color:white;
+
+}
+
+/* ================= BRIEF ================= */
+
+.brief{
+
+margin-top:35px;
+
+padding:25px;
+
+background:rgba(0,20,30,.6);
+
+border:2px solid cyan;
+
+border-radius:15px;
+
+box-shadow:
+
+0 0 25px cyan;
+
+}
+
+.brief h3{
+
+font-size:30px;
+
+margin-bottom:20px;
+
+color:#00ffff;
+
+}
+
+.brief p{
+
+font-size:22px;
+
+margin:12px;
+
+line-height:1.6;
+
+}
+
+.warning{
+
+color:orange;
+
+font-weight:bold;
+
+}
+
+/* ================= GAME ================= */
+
+.game{
+
+margin-top:40px;
+
+padding:35px;
+
+background:rgba(0,15,25,.7);
+
+border:2px solid cyan;
+
+border-radius:18px;
+
+box-shadow:
+
+0 0 30px cyan;
+
+}
+
+/* ================= STATUS ================= */
+
+#status{
+
+font-size:28px;
+
+color:#00ffff;
+
+margin-bottom:30px;
+
+text-shadow:0 0 15px cyan;
+
+}
+
+/* ================= MEMORY BOX ================= */
+
+#memoryBox{
+
+width:500px;
+
+margin:auto;
+
+padding:30px;
+
+border:3px solid cyan;
+
+border-radius:18px;
+
+background:black;
+
+box-shadow:
+
+0 0 25px cyan;
+
+}
+
+/* ================= COLOR ================= */
+
+#memoryColor{
+
+font-size:30px;
+
+margin-bottom:20px;
+
+font-weight:bold;
+
+letter-spacing:4px;
+
+}
+
+/* ================= CODE ================= */
+
+#memoryCode{
+
+font-size:70px;
+
+font-weight:bold;
+
+letter-spacing:10px;
+
+transition:.4s;
+
+}
+
+/* ================= COLORS ================= */
+
+.green{
+
+color:#00ff66;
+
+text-shadow:
+
+0 0 20px lime,
+0 0 50px lime,
+0 0 90px lime;
+
+}
+
+.yellow{
+
+color:#ffd500;
+
+text-shadow:
+
+0 0 20px gold,
+0 0 50px gold,
+0 0 90px gold;
+
+}
+
+.red{
+
+color:#ff4444;
+
+text-shadow:
+
+0 0 20px red,
+0 0 50px red,
+0 0 90px red;
+
+}
+
+/* ================= GLITCH ================= */
+
+.glitch{
+
+animation:glitch .15s infinite;
+
+}
+
+@keyframes glitch{
+
+0%{
+
+transform:translate(2px,0);
+
+}
+
+25%{
+
+transform:translate(-2px,2px);
+
+}
+
+50%{
+
+transform:translate(3px,-2px);
+
+}
+
+75%{
+
+transform:translate(-3px,2px);
+
+}
+
+100%{
+
+transform:translate(0);
+
+}
+
+}
+
+/* ================= QUESTION ================= */
+
+#questionBox{
+
+margin-top:35px;
+
+}
+
+#question{
+
+font-size:32px;
+
+margin-bottom:30px;
+
+color:#00ffff;
+
+}
+
+/* ================= BUTTONS ================= */
+
+#choices{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+#choices button{
+
+padding:18px 30px;
+
+font-size:22px;
+
+background:black;
+
+color:cyan;
+
+border:2px solid cyan;
+
+border-radius:10px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+#choices button:hover{
+
+background:cyan;
+
+color:black;
+
+transform:scale(1.08);
+
+box-shadow:
+
+0 0 20px cyan,
+0 0 50px cyan;
+
+}
+
+/* ================= RESULT ================= */
+
+#result{
+
+margin-top:35px;
+
+font-size:30px;
+
+font-weight:bold;
+
+}

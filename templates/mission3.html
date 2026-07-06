@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Mission 3</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='mission3.css') }}">
+
+</head>
+
+<body>
+<script src="{{ url_for('static', filename='score.js') }}"></script>
+    <h1>MISSION 3</h1>
+
+<p class="subtitle">Linux Terminal Investigation</p>
+
+<div class="timer">
+TIME :
+<span id="timerDisplay">0</span>s
+</div>
+
+<div class="brief">
+    <h2>MISSION BRIEF</h2>
+
+    <p>Agent,</p>
+
+    <p>The decrypted message has revealed a hidden Linux server. Intelligence suggests the hacker has stored confidential evidence inside a secure directory.</p>
+
+    <p>Your mission is to navigate the Linux terminal, recover the evidence, and stop the hacker before the server wipes itself.</p>
+</div>
+<!-- NEW TASKS START HERE -->
+
+<div class="task-card active" id="task1">
+    <h3>Task 1</h3>
+    <p>Display all files in the current directory.</p>
+</div>
+
+<div class="task-card" id="task2">
+    <h3>Task 2</h3>
+    <p>Navigate into the Secrets folder.</p>
+</div>
+
+<div class="task-card" id="task3">
+     <h3>Task 3</h3>
+    <p>List the files inside the Secrets folder.</p>
+</div>
+
+<div class="task-card" id="task4">
+    <h3>Task 4</h3>
+    <p>Open <code>secret.txt</code> to recover the evidence.</p>
+</div>
+
+</div>
+
+
+    <h3>Linux Secure Server</h3>
+
+    <p class="prompt">agent@cyberescape:~$</p>
+
+    <p class="task">
+        Your first task is to display all files in the current directory.
+    </p>
+
+    <input
+        type="text"
+        id="command"
+        placeholder="Enter Linux command">
+
+    <br>
+
+    <button onclick="checkAnswer()">
+    EXECUTE
+</button>
+
+    <div id="output"></div>
+
+</div>
+<script>
+
+startMission();
+
+let seconds = 0;
+let stage = 1;
+let wrongAttempts = 0;
+
+const output = document.getElementById("output");
+
+const timer = setInterval(function () {
+
+    seconds++;
+
+    document.getElementById("timerDisplay").innerHTML = seconds;
+
+}, 1000);
+
+function showTask(id){
+
+    document.querySelectorAll(".task-card").forEach(card=>{
+
+        card.classList.remove("active");
+
+    });
+
+    document.getElementById(id).classList.add("active");
+
+}
+
+
+
+function checkAnswer(){
+
+    let ans = document.getElementById("command").value.trim().toLowerCase();
+
+    // ---------------- STAGE 1 ----------------
+
+    if(stage==1){
+
+        if(ans=="ls"){
+
+            output.innerHTML=`
+            <p style="color:#00ff66;">
+            agent@cyberescape:~$ ls<br>
+            Documents<br>
+            Downloads<br>
+            Secrets
+            </p>
+            `;
+
+            stage=2;
+
+            showTask("task2");
+
+        }
+
+        else{
+
+            wrongMission();
+
+        }
+
+    }
+
+    // ---------------- STAGE 2 ----------------
+
+    else if(stage==2){
+
+        if(ans=="cd secrets"){
+
+            output.innerHTML+=`
+            <br>
+            agent@cyberescape:~$ cd Secrets<br>
+            agent@cyberescape:~/Secrets$
+            `;
+
+            stage=3;
+
+            showTask("task3");
+
+        }
+
+        else{
+
+            wrongMission();
+
+        }
+
+    }
+
+    // ---------------- STAGE 3 ----------------
+
+    else if(stage==3){
+
+        if(ans=="ls"){
+
+            output.innerHTML+=`
+            <br>
+            agent@cyberescape:~/Secrets$ ls<br>
+            secret.txt<br>
+            virus.exe<br>
+            passwords.txt
+            `;
+
+            stage=4;
+
+            showTask("task4");
+
+        }
+
+        else{
+
+            wrongMission();
+
+        }
+
+    }
+
+    // ---------------- STAGE 4 ----------------
+
+    else if(stage==4){
+
+        if(ans=="cat secret.txt"){
+
+            clearInterval(timer);
+
+            finishMission(3);
+
+            output.innerHTML+=`
+            <br><br>
+
+            <h2 style="color:lime;">
+            Hidden IP Found
+            </h2>
+
+            <h2>10.25.4.18</h2>
+
+            <h2 style="color:#00ff66;">
+            MISSION COMPLETE
+            </h2>
+            `;
+
+            document.getElementById("command").disabled=true;
+
+            document.querySelector("button").disabled=true;
+
+            setTimeout(function(){
+
+                window.location.href="/mission4";
+
+            },3000);
+
+        }
+
+        else{
+
+            wrongMission();
+
+        }
+
+    }
+
+    document.getElementById("command").value="";
+
+}
+
+function wrongMission(){
+
+    wrongAttempts++;
+
+    if(wrongAttempts==1){
+
+        retryMission();
+
+        output.innerHTML+=`
+
+        <br>
+
+        <h3 style="color:orange;">
+
+        Wrong Command
+
+        </h3>
+
+        <button onclick="retryMission3()">
+
+        RETRY
+
+        </button>
+
+        `;
+
+    }
+
+    else{
+
+        clearInterval(timer);
+
+        failMission(3);
+
+        output.innerHTML+=`
+
+        <h2 style="color:red;">
+
+        Mission Failed
+
+        </h2>
+
+        <p>Loading Mission 4...</p>
+
+        `;
+
+        setTimeout(function(){
+
+            window.location.href="/mission4";
+
+        },2500);
+
+    }
+
+}
+
+
+function retryMission3(){
+
+    document.getElementById("command").value = "";
+
+    document.getElementById("output").innerHTML = "";
+
+}
+
+document.getElementById("command").addEventListener("keypress", function(e){
+
+    if(e.key === "Enter"){
+
+        checkAnswer();
+
+    }
+
+});
+
+</script>
+
+</body>
+
+</html>
