@@ -1,97 +1,111 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    overflow:hidden;
-    background:#000;
-    font-family:Consolas, monospace;
+body {
+    overflow: hidden;
+    background: #000;
+    font-family: Consolas, monospace;
 }
 
-/* Matrix Background */
-#matrix{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    z-index:-1;
+/* Red Matrix Background */
+#matrix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 /* Center the login box */
-.login-box{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
-    width:420px;
-    padding:40px;
+    width: 420px;
+    padding: 40px;
 
-    background:rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.88);
 
-    border:2px solid #00ff66;
-    border-radius:15px;
+    border: 2px solid #ff0000;
+    border-radius: 15px;
 
-    text-align:center;
+    text-align: center;
 
-    box-shadow:0 0 25px #00ff66;
+    box-shadow: 0 0 25px #ff0000;
 }
 
-h1{
-    color:#00ff66;
-    margin-bottom:25px;
-    font-size:40px;
-    text-shadow:0 0 15px #00ff66;
+/* Main Heading */
+h1 {
+    color: #ff0000;
+    margin-bottom: 25px;
+    font-size: 40px;
+    text-shadow: 0 0 15px #ff0000;
 }
 
-#typing{
-    color:#00ff66;
-    height:50px;
-    margin-bottom:20px;
+/* Typing Text */
+#typing {
+    color: #ff0000;
+    height: 50px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 8px #ff0000;
 }
 
-input{
-    width:100%;
-    padding:15px;
-    margin:12px 0;
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 15px;
+    margin: 12px 0;
 
-    background:#111;
-    color:#00ff66;
+    background: #111;
+    color: #ff0000;
 
-    border:1px solid #00ff66;
-    border-radius:6px;
+    border: 1px solid #ff0000;
+    border-radius: 6px;
 
-    outline:none;
+    outline: none;
 }
 
-button{
-    width:100%;
-    padding:15px;
-
-    margin-top:20px;
-
-    background:#00ff66;
-    color:black;
-
-    border:none;
-    border-radius:6px;
-
-    cursor:pointer;
-
-    font-weight:bold;
-    transition:0.3s;
+/* Input Focus */
+input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 12px #ff0000;
 }
 
-button:hover{
-    background:#00cc55;
-    box-shadow:0 0 20px #00ff66;
-    transform:scale(1.05);
+/* Login Button */
+button {
+    width: 100%;
+    padding: 15px;
+
+    margin-top: 20px;
+
+    background: #ff0000;
+    color: black;
+
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.error{
-    color:red;
-    margin-bottom:15px;
+/* Button Hover */
+button:hover {
+    background: #cc0000;
+    box-shadow: 0 0 20px #ff0000;
+    transform: scale(1.05);
+}
+
+/* Error Message */
+.error {
+    color: #ff3333;
+    margin-bottom: 15px;
+    text-shadow: 0 0 5px #ff0000;
 }
