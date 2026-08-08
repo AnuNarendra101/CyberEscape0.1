@@ -1,191 +1,222 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Consolas, monospace;
+\*{
+margin:0;
+padding:0;
+box-sizing\:border-box;
+font-family\:Consolas, monospace;
 }
 
-body {
-    background: #000;
-    color: #ff0000;
-    font-family: Consolas, monospace;
-    overflow: hidden;
-    position: relative;
+body{
+background:#000;
+color:#00ff66;
+font-family\:Consolas,monospace;
+overflow\:hidden;
+position\:relative;
 }
 
-/* Red Matrix Background */
-#matrix {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: -1;
+/\* Matrix Background \*/
+\#matrix{
+position\:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
 }
 
-/* Main Game */
-.game {
-    width: 95%;
-    margin: 20px auto;
+.game{
+width:95%;
+margin:20px auto;
 }
 
-/* Header */
-.header {
-    text-align: center;
-    padding: 20px;
-    border: 2px solid #ff0000;
-    box-shadow: 0 0 15px #ff0000;
-    margin-bottom: 20px;
+.header{
+text-align\:center;
+padding:20px;
+border:2px solid #00ff66;
+box-shadow:0 0 15px #00ff66;
+margin-bottom:20px;
 }
 
-.header h1 {
-    color: #ff0000;
-    text-shadow: 0 0 15px #ff0000;
+.header h1{
+color:#00ff66;
+text-shadow:0 0 15px #00ff66;
 }
 
-/* Main Layout */
-.main {
-    display: grid;
-    grid-template-columns: 25% 50% 25%;
-    gap: 20px;
+.main{
+display\:grid;
+grid-template-columns:25% 50% 25%;
+gap:20px;
 }
 
-/* Panels */
 .left-panel,
 .center-panel,
-.right-panel {
-    background: rgba(0, 0, 0, 0.8);
+.right-panel{
 
-    border: 2px solid #ff0000;
+```
+background:rgba(0,0,0,.8);
 
-    border-radius: 10px;
+border:2px solid #00ff66;
 
-    padding: 20px;
+border-radius:10px;
 
-    box-shadow: 0 0 15px #ff0000;
+padding:20px;
 
-    min-height: 420px;
+box-shadow:0 0 15px #00ff66;
+
+min-height:420px;
+```
+
 }
 
-/* Panel Headings */
 .left-panel h2,
 .center-panel h2,
-.right-panel h2 {
-    text-align: center;
-    margin-bottom: 20px;
+.right-panel h2{
+
+```
+text-align:center;
+
+margin-bottom:20px;
+```
+
 }
 
-/* File Buttons */
-.left-panel button {
-    width: 100%;
+.left-panel button{
 
-    margin: 10px 0;
+```
+width:100%;
 
-    padding: 15px;
+margin:10px 0;
 
-    background: #111;
+padding:15px;
 
-    color: #ff0000;
+background:#111;
 
-    border: 1px solid #ff0000;
+color:#00ff66;
 
-    cursor: pointer;
+border:1px solid #00ff66;
 
-    transition: 0.3s;
+cursor:pointer;
+
+transition:.3s;
+```
+
 }
 
-/* Button Hover */
-.left-panel button:hover {
-    background: #ff0000;
+.left-panel button\:hover{
 
-    color: black;
+```
+background:#00ff66;
+
+color:black;
+```
+
 }
 
-/* Terminal */
-#terminal {
-    height: 320px;
+\#terminal{
 
-    overflow: auto;
+```
+height:320px;
 
-    background: black;
+overflow:auto;
 
-    color: #ff0000;
+background:black;
 
-    padding: 15px;
+color:#00ff66;
 
-    border: 1px solid #ff0000;
+padding:15px;
+
+border:1px solid #00ff66;
+```
+
 }
 
-/* Bottom Section */
-.bottom {
-    margin-top: 25px;
+.bottom{
 
-    text-align: center;
+```
+margin-top:25px;
+
+text-align:center;
+```
+
 }
 
-/* Input */
-.bottom input {
-    width: 300px;
+.bottom input{
 
-    padding: 15px;
+```
+width:300px;
 
-    background: black;
+padding:15px;
 
-    color: #ff0000;
+background:black;
 
-    border: 2px solid #ff0000;
+color:#00ff66;
 
-    border-radius: 6px;
+border:2px solid #00ff66;
 
-    font-size: 18px;
+border-radius:6px;
+
+font-size:18px;
+```
+
 }
 
-/* Submit Button */
-.bottom button {
-    padding: 15px 35px;
+.bottom button{
 
-    margin-left: 15px;
+```
+padding:15px 35px;
 
-    background: #ff0000;
+margin-left:15px;
 
-    color: black;
+background:#00ff66;
 
-    border: none;
+color:black;
 
-    font-weight: bold;
+border:none;
 
-    cursor: pointer;
+font-weight:bold;
 
-    border-radius: 6px;
+cursor:pointer;
 
-    transition: 0.3s;
+border-radius:6px;
+
+transition:.3s;
+```
+
 }
 
-/* Submit Hover */
-.bottom button:hover {
-    transform: scale(1.05);
+.bottom button\:hover{
 
-    box-shadow: 0 0 20px #ff0000;
+```
+transform:scale(1.05);
+
+box-shadow:0 0 20px #00ff66;
+```
+
 }
 
-/* Floating Animation */
+/\* Floating Animation \*/
+
 .left-panel,
 .center-panel,
-.right-panel {
-    animation: floatBox 3s ease-in-out infinite;
+.right-panel{
+
+```
+animation: floatBox 3s ease-in-out infinite;
+```
+
 }
 
-@keyframes floatBox {
+@keyframes floatBox{
 
-    0% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-6px);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
+0%{
+transform\:translateY(0);
 }
+
+50%{
+transform\:translateY(-6px);
+}
+
+100%{
+transform\:translateY(0);
+}
+
+} change the background into red matrixes rain drop
