@@ -1,194 +1,191 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Consolas, monospace;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Consolas, monospace;
 }
 
-body{
-    background:#000;
-    color:#00ff66;
-    font-family:Consolas,monospace;
-    overflow:hidden;
-    position:relative;
+body {
+    background: #000;
+    color: #ff0000;
+    font-family: Consolas, monospace;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Matrix Background */
-#matrix{
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:0;
-    z-index:-1;
+/* Red Matrix Background */
+#matrix {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
 }
 
-.game{
-    width:95%;
-    margin:20px auto;
+/* Main Game */
+.game {
+    width: 95%;
+    margin: 20px auto;
 }
 
-.header{
-    text-align:center;
-    padding:20px;
-    border:2px solid #00ff66;
-    box-shadow:0 0 15px #00ff66;
-    margin-bottom:20px;
+/* Header */
+.header {
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 15px #ff0000;
+    margin-bottom: 20px;
 }
 
-.header h1{
-    color:#00ff66;
-    text-shadow:0 0 15px #00ff66;
+.header h1 {
+    color: #ff0000;
+    text-shadow: 0 0 15px #ff0000;
 }
 
-.main{
-    display:grid;
-    grid-template-columns:25% 50% 25%;
-    gap:20px;
+/* Main Layout */
+.main {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    gap: 20px;
 }
 
+/* Panels */
 .left-panel,
 .center-panel,
-.right-panel{
+.right-panel {
+    background: rgba(0, 0, 0, 0.8);
 
-    background:rgba(0,0,0,.8);
+    border: 2px solid #ff0000;
 
-    border:2px solid #00ff66;
+    border-radius: 10px;
 
-    border-radius:10px;
+    padding: 20px;
 
-    padding:20px;
+    box-shadow: 0 0 15px #ff0000;
 
-    box-shadow:0 0 15px #00ff66;
-
-    min-height:420px;
+    min-height: 420px;
 }
 
+/* Panel Headings */
 .left-panel h2,
 .center-panel h2,
-.right-panel h2{
-
-    text-align:center;
-
-    margin-bottom:20px;
+.right-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.left-panel button{
+/* File Buttons */
+.left-panel button {
+    width: 100%;
 
-    width:100%;
+    margin: 10px 0;
 
-    margin:10px 0;
+    padding: 15px;
 
-    padding:15px;
+    background: #111;
 
-    background:#111;
+    color: #ff0000;
 
-    color:#00ff66;
+    border: 1px solid #ff0000;
 
-    border:1px solid #00ff66;
+    cursor: pointer;
 
-    cursor:pointer;
-
-    transition:.3s;
+    transition: 0.3s;
 }
 
-.left-panel button:hover{
+/* Button Hover */
+.left-panel button:hover {
+    background: #ff0000;
 
-    background:#00ff66;
-
-    color:black;
+    color: black;
 }
 
-#terminal{
+/* Terminal */
+#terminal {
+    height: 320px;
 
-    height:320px;
+    overflow: auto;
 
-    overflow:auto;
+    background: black;
 
-    background:black;
+    color: #ff0000;
 
-    color:#00ff66;
+    padding: 15px;
 
-    padding:15px;
-
-    border:1px solid #00ff66;
+    border: 1px solid #ff0000;
 }
 
-.bottom{
+/* Bottom Section */
+.bottom {
+    margin-top: 25px;
 
-    margin-top:25px;
-
-    text-align:center;
+    text-align: center;
 }
 
-.bottom input{
+/* Input */
+.bottom input {
+    width: 300px;
 
-    width:300px;
+    padding: 15px;
 
-    padding:15px;
+    background: black;
 
-    background:black;
+    color: #ff0000;
 
-    color:#00ff66;
+    border: 2px solid #ff0000;
 
-    border:2px solid #00ff66;
+    border-radius: 6px;
 
-    border-radius:6px;
-
-    font-size:18px;
+    font-size: 18px;
 }
 
-.bottom button{
+/* Submit Button */
+.bottom button {
+    padding: 15px 35px;
 
-    padding:15px 35px;
+    margin-left: 15px;
 
-    margin-left:15px;
+    background: #ff0000;
 
-    background:#00ff66;
+    color: black;
 
-    color:black;
+    border: none;
 
-    border:none;
+    font-weight: bold;
 
-    font-weight:bold;
+    cursor: pointer;
 
-    cursor:pointer;
+    border-radius: 6px;
 
-    border-radius:6px;
-
-    transition:.3s;
+    transition: 0.3s;
 }
 
-.bottom button:hover{
+/* Submit Hover */
+.bottom button:hover {
+    transform: scale(1.05);
 
-    transform:scale(1.05);
-
-    box-shadow:0 0 20px #00ff66;
+    box-shadow: 0 0 20px #ff0000;
 }
-
 
 /* Floating Animation */
-
 .left-panel,
 .center-panel,
-.right-panel{
-
+.right-panel {
     animation: floatBox 3s ease-in-out infinite;
-
 }
 
-@keyframes floatBox{
+@keyframes floatBox {
 
-0%{
-    transform:translateY(0);
-}
+    0% {
+        transform: translateY(0);
+    }
 
-50%{
-    transform:translateY(-6px);
-}
+    50% {
+        transform: translateY(-6px);
+    }
 
-100%{
-    transform:translateY(0);
-}
-
+    100% {
+        transform: translateY(0);
+    }
 }
